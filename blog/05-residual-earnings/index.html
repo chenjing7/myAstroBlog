@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="zh"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)"><link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)"><link rel="icon" type="image/x-icon" href="/favicon-light.svg"><meta name="generator" content="Astro v4.11.6"><!-- Font preloads --><link rel="preload" href="/_astro/inter-latin-400-normal.BT1H-PT_.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/inter-latin-600-normal.B2Ssfs8e.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-400-normal.CvHVDnm4.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-600-normal.DUWh3m6k.woff2" as="font" type="font/woff2" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://astro-nano-demo.vercel.app/blog/05-residual-earnings/"><!-- Primary Meta Tags --><title>剩余收益与估值 | Chen Jing</title><meta name="title" content="剩余收益与估值 | Chen Jing"><meta name="description" content="支付的是价格，得到的是价值。"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://astro-nano-demo.vercel.app/blog/05-residual-earnings/"><meta property="og:title" content="剩余收益与估值 | Chen Jing"><meta property="og:description" content="支付的是价格，得到的是价值。"><meta property="og:image" content="https://img.chenjing.tech/file/4fbda5e800b9c27c06d20.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://astro-nano-demo.vercel.app/blog/05-residual-earnings/"><meta property="twitter:title" content="剩余收益与估值 | Chen Jing"><meta property="twitter:description" content="支付的是价格，得到的是价值。"><meta property="twitter:image" content="https://img.chenjing.tech/file/4fbda5e800b9c27c06d20.png"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script>
+  function init() {
+    preloadTheme();
+    onScroll();
+    animate();
+
+    const backToTop = document.getElementById("back-to-top");
+    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+
+    const backToPrev = document.getElementById("back-to-prev");
+    backToPrev?.addEventListener("click", () => window.history.back());
+
+    const lightThemeButton = document.getElementById("light-theme-button");
+    lightThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "light");
+      toggleTheme(false);
+    });
+
+    const darkThemeButton = document.getElementById("dark-theme-button");
+    darkThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "dark");
+      toggleTheme(true);
+    });
+
+    const systemThemeButton = document.getElementById("system-theme-button");
+    systemThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "system");
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    });
+
+    window.matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", event => {
+        if (localStorage.theme === "system") {
+          toggleTheme(event.matches);
+        }
+      }
+    );
+
+    document.addEventListener("scroll", onScroll);
+  }
+
+  function animate() {
+    const animateElements = document.querySelectorAll(".animate");
+
+    animateElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add("show");
+      }, index * 150);
+    });
+  }
+
+  function onScroll() {
+    if (window.scrollY > 0) {
+      document.documentElement.classList.add("scrolled");
+    } else {
+      document.documentElement.classList.remove("scrolled");
+    }
+  }
+
+  function scrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+function toggleTheme(dark) {
+    const css = document.createElement("style");
+
+    css.appendChild(
+      document.createTextNode(
+        `* {
+             -webkit-transition: none !important;
+             -moz-transition: none !important;
+             -o-transition: none !important;
+             -ms-transition: none !important;
+             transition: none !important;
+          }
+        `,
+      )
+    );
+
+    document.head.appendChild(css);
+
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+  window.getComputedStyle(css).opacity;
+    document.head.removeChild(css);
+  }
+
+  function preloadTheme() {
+    const userTheme = localStorage.theme;
+
+    if (userTheme === "light" || userTheme === "dark") {
+      toggleTheme(userTheme === "dark");
+    } else {
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => init());
+  document.addEventListener("astro:after-swap", () => init());
+  preloadTheme();
+</script><link rel="stylesheet" href="/_astro/_slug_.DA3J8DN5.css"><script type="module" src="/_astro/hoisted.BMnUj_RX.js"></script></head> <body> <header> <div class="mx-auto max-w-screen-sm px-3">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-orange-600 dark:decoration-white/50 hover:no-underline hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-orange-600 hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Chen Jing </div>  </a> <nav class="flex gap-1"> <a href="/blog" target="_self" class="inline-block decoration-orange-600 dark:decoration-white/50 hover:no-underline hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-orange-600 hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-4"> 
+文章
+ </a> <!-- <span>
+          {`/`}
+        </span>
+        <Link href="/work">
+          工作
+        </Link> --> <span> / </span> <a href="/projects" target="_self" class="inline-block decoration-orange-600 dark:decoration-white/50 hover:no-underline hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-orange-600 hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-4"> 
+项目
+ </a> </nav> </div>  </div> </header> <main>  <div class="mx-auto max-w-screen-sm px-3">  <div class="animate"> <a href="/blog" class="relative group w-fit flex pl-7 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm"> 
+所有文章
+ </div> </a> </div> <div class="space-y-1 my-10"> <div class="animate flex items-center gap-1.5"> <div class="font-base text-sm"> <time datetime="2023-07-08T16:00:00.000Z"> 2023/7/9 </time> </div> <!-- &bull; --> <!-- <div class="font-base text-sm">
+          {readingTime(post.body)}
+        </div> --> </div> <div class="animate text-2xl font-semibold text-black dark:text-white"> 剩余收益与估值 </div> </div> <article class="animate"> <p>支付的是价格，得到的是价值。</p>
+<p><img  src="/_astro/residual-earnings.BYvlHrcV_Z2iFSg6.webp" alt="剩余收益" width="800" height="350" loading="lazy" decoding="async"></p>
+<h2 id="一账面价值和内在价值">一、账面价值和内在价值</h2>
+<p>对于内在价值的评估，巴菲特使用的是所有者收益。<a href="/blog/03-how-to-calculate-owner-earnings">如何计算所有者收益？以Scott Fetzer为例</a></p>
+<p>Todd Combs 在 Graham &#x26; Dodd 2022 年度早餐会的分享中，也提到伯克希尔关注所有者收益，报告收益与所有者收益相近是一个好的信号。</p>
+<p>此外，在 1994 年致股东信中，巴菲特阐述了账面价值与内在价值的关系：</p>
+<blockquote>
+<p>我们来看一种投资形式——大学教育，这能让你更好地理解账面价值与内在价值的区别。上大学的成本，可以看作“账面价值”。算得更仔细点，还要加上如果不去上大学直接工作能赚的钱。在这里，我们姑且先不考虑大学教育的非经济的效益，只考虑经济价值。</p>
+</blockquote>
+<blockquote>
+<p>我们必须先估算这位学生毕业后其一生能获得的收益，减去要是他没有接受大学教育能赚得的收益。将这个差值，按照一个合适的利率进行贴现，得到毕业的那天的贴现值。最终的数字就是大学教育的内在经济价值。有些毕业生可能会发现，其账面价值高于计算出来的内在价值，这就表示这个大学上得不值；要是内在价值远高于账面价值，上大学这笔投资就是明智的。不管是哪种情况，有一点很明确，账面价值不能衡量内在价值。</p>
+</blockquote>
+<p>接下来，看另外一个与估值相关的概念：剩余收益（Residual Earnings）。出自 Stephen Penman 的 A<em>ccounting For Value</em>一书。</p>
+<p><img  src="/_astro/accounting-for-value.BrZF2mxI_1upAvo.webp" alt="Accounting for Value" width="658" height="728" loading="lazy" decoding="async"></p>
+<h2 id="二剩余收益">二、剩余收益</h2>
+<p>假设一家 A 公司，2014 年 12 月 31 日的账面价值（Book Value）为 100,000 元。之后，2015 到 2017 年预估的净利润和账面价值如下表：</p>
+<p><img  src="/_astro/a-company.DgdtmIfK_Z4lzeK.webp" alt="A Company" width="1080" height="152" loading="lazy" decoding="async"></p>
+<p>机会成本（即 Cost of Capital 资本成本）假设是 10%。</p>
+<p>根据以上信息，我们怎么计算 2014 年年底，A 公司的内在价值？</p>
+<p>内在价值 = 账面价值 + 推定价值（Speculative Value）</p>
+<p><img  src="/_astro/intrinsic-value.BdER6Jci_1WuUdF.webp" alt="内在价值" width="800" height="300" loading="lazy" decoding="async"></p>
+<p>（1）账面价值：可以从资产负债表上得到，这里是 100,000元 。</p>
+<p>（2）推定价值：在未来的账面价值盈利情况。由于未来是不确定的， 所以，我们把这部分称作推定价值。</p>
+<p>先计算 2015 年的推定价值。</p>
+<p>2014 年账面价值是 100,000 元，ROE 为 10%，即我们期望的最低回报是 10,000 元。</p>
+<p>2015 年预期的净利润是 20,000 元，对应 ROE 就是 20%。比期望的最低回报多了 10,000 元，即剩余收益。</p>
+<p>2016年，用 120,000 元的账面价值，赚得净利润 18,000 元，对应 ROE 为 15%。资本成本为 12,000 元，计算得剩余收益 6,000 元（18,000-12,000）。</p>
+<p>同理，得到 2017 年的各项数据。</p>
+<p>最后，将 2015-2017 年的剩余价值贴现，加 2014 年的账面价值，得到内在价值为 114,048 元。</p>
+<p><img  src="/_astro/a-company-02.C4590Rmb_Z1IYzAP.webp" alt="A Company" width="1080" height="372" loading="lazy" decoding="async"></p>
+<h2 id="三永续增长型剩余收益">三、永续增长型剩余收益</h2>
+<p>上面的例子中，A 公司从 2017 年开始，剩余价值就为 0 了。对于一家有持续竞争力的企业，未来很长的一段时间，它还是会有正剩余收益。这样的情况，我们怎么去评估内在价值？</p>
+<p>Penman 给了以下公式：</p>
+<p><img  src="/_astro/re.ChYdp1bl_Z11sSKn.webp" alt="永续增长型剩余收益" width="968" height="415" loading="lazy" decoding="async"></p>
+<p>为了理解这个公式，我们再假设一个 B 公司，和 A 公司很类似。不同的点是，B 公司在 2017 年是正的剩余收益，且之后每年的剩余收益都是常数 6003 元。对应2017年之后的贴现值为 45,101 元（6003/10%/(1.1^3））。</p>
+<p><img  src="/_astro/re02.zcOqy8Eu_2pRTpu.webp" alt="B company" width="1080" height="318" loading="lazy" decoding="async"></p>
+<p>接着，与文章第二部分的计算方式类似，计算得 B 公司在 2014 年的内在价值为 163,660 元。</p>
+<p>在 B 公司基础上，再假设一个 2017 年之后剩余收益以 3.5% 增速稳定增长的 C 公司。对应 2017 年之后的贴现值为 98,882 元（6210*1.035/(1.1-1.035)）。</p>
+<p><img  src="/_astro/re03.DPxY1Cm3_1dD9ik.webp" alt="C company" width="1080" height="321" loading="lazy" decoding="async"></p>
+<p>同上理，计算得 C 公司在 2014 年的内在价值为 193,007 元。</p>
+<p><img  src="/_astro/re03.DPxY1Cm3_1dD9ik.webp" alt="ABC company" width="1080" height="321" loading="lazy" decoding="async"></p>
+<p>三家公司，虽然账面价值相同，但内在价值却不一样。类似巴菲特在 2007 年致股东信中，提到的三类生意：伟大生意（the Great）、好生意（the Good）、糟糕生意（the Gurusome）。</p>
+<h2 id="四实例练习">四、实例练习</h2>
+<p>找一家 A 股的上市公司，应用剩余收益进行简单练习。简化起见，暂时直接使用财务报表的数据，不对财务数据调整和公司进行深入分析。</p>
+<p>已知 D 公司，2019-2021 年的净利润和账面价值（单位为亿元）。该公司的 ROE 相对比较稳定，维持在 14% 左右。假设，2022 年的剩余收益和 2021 年一样，为 84 亿元。之后，每年的剩余收益保持不变均为 84 亿元。</p>
+<p><img  src="/_astro/d-company.D_ZMtEBq_ZWtQGA.webp" alt="D company" width="1080" height="330" loading="lazy" decoding="async"></p>
+<p>同上，我们得到剩余价值零增长的情况下，内在价值为 2742 亿元。</p>
+<p>比较 2021 年底的市值 5407 亿元，可以看到市场价格反映了投资者对公司增长的预期。我们可以反推出，为了达到当前的市值所需的业绩增速。</p> </article>  </div>  </main> <footer class="animate"> <div class="mx-auto max-w-screen-sm px-3">  <div class="relative"> <div class="absolute right-0 -top-20"> <button id="back-to-top" class="relative group w-fit flex pl-8 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current rotate-90"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm">
+返回顶部
+</div> </button> </div> </div> <div class="flex justify-between items-center"> <div>
+&copy; 2024 | Chen Jing </div> <div class="flex flex-wrap gap-1 items-center"> <a href="/rss.xml" aria-label="RSS Feed" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <path d="M4 11a9 9 0 0 1 9 9"></path> <path d="M4 4a16 16 0 0 1 16 16"></path> <circle cx="5" cy="19" r="1"></circle> </svg> </a> <button id="light-theme-button" aria-label="Light theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> </button> <button id="dark-theme-button" aria-label="Dark theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> <!-- <button
+          id="system-theme-button"
+          aria-label="System theme"
+          class="group size-8 flex items-center justify-center rounded-full"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"
+          >
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </button> --> </div> </div>  </div> </footer> </body></html>

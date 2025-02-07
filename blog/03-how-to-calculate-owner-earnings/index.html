@@ -1,0 +1,182 @@
+<!DOCTYPE html><html lang="zh"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)"><link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)"><link rel="icon" type="image/x-icon" href="/favicon-light.svg"><meta name="generator" content="Astro v4.11.6"><!-- Font preloads --><link rel="preload" href="/_astro/inter-latin-400-normal.BT1H-PT_.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/inter-latin-600-normal.B2Ssfs8e.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-400-normal.CvHVDnm4.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-600-normal.DUWh3m6k.woff2" as="font" type="font/woff2" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://astro-nano-demo.vercel.app/blog/03-how-to-calculate-owner-earnings/"><!-- Primary Meta Tags --><title>如何计算所有者收益？以 Scott Fetzer 为例 | Chen Jing</title><meta name="title" content="如何计算所有者收益？以 Scott Fetzer 为例 | Chen Jing"><meta name="description" content="所有者收益作为真正的现金流来估算内在价值。"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://astro-nano-demo.vercel.app/blog/03-how-to-calculate-owner-earnings/"><meta property="og:title" content="如何计算所有者收益？以 Scott Fetzer 为例 | Chen Jing"><meta property="og:description" content="所有者收益作为真正的现金流来估算内在价值。"><meta property="og:image" content="https://img.chenjing.tech/file/4fbda5e800b9c27c06d20.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://astro-nano-demo.vercel.app/blog/03-how-to-calculate-owner-earnings/"><meta property="twitter:title" content="如何计算所有者收益？以 Scott Fetzer 为例 | Chen Jing"><meta property="twitter:description" content="所有者收益作为真正的现金流来估算内在价值。"><meta property="twitter:image" content="https://img.chenjing.tech/file/4fbda5e800b9c27c06d20.png"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script>
+  function init() {
+    preloadTheme();
+    onScroll();
+    animate();
+
+    const backToTop = document.getElementById("back-to-top");
+    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+
+    const backToPrev = document.getElementById("back-to-prev");
+    backToPrev?.addEventListener("click", () => window.history.back());
+
+    const lightThemeButton = document.getElementById("light-theme-button");
+    lightThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "light");
+      toggleTheme(false);
+    });
+
+    const darkThemeButton = document.getElementById("dark-theme-button");
+    darkThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "dark");
+      toggleTheme(true);
+    });
+
+    const systemThemeButton = document.getElementById("system-theme-button");
+    systemThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "system");
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    });
+
+    window.matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", event => {
+        if (localStorage.theme === "system") {
+          toggleTheme(event.matches);
+        }
+      }
+    );
+
+    document.addEventListener("scroll", onScroll);
+  }
+
+  function animate() {
+    const animateElements = document.querySelectorAll(".animate");
+
+    animateElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add("show");
+      }, index * 150);
+    });
+  }
+
+  function onScroll() {
+    if (window.scrollY > 0) {
+      document.documentElement.classList.add("scrolled");
+    } else {
+      document.documentElement.classList.remove("scrolled");
+    }
+  }
+
+  function scrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+function toggleTheme(dark) {
+    const css = document.createElement("style");
+
+    css.appendChild(
+      document.createTextNode(
+        `* {
+             -webkit-transition: none !important;
+             -moz-transition: none !important;
+             -o-transition: none !important;
+             -ms-transition: none !important;
+             transition: none !important;
+          }
+        `,
+      )
+    );
+
+    document.head.appendChild(css);
+
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+  window.getComputedStyle(css).opacity;
+    document.head.removeChild(css);
+  }
+
+  function preloadTheme() {
+    const userTheme = localStorage.theme;
+
+    if (userTheme === "light" || userTheme === "dark") {
+      toggleTheme(userTheme === "dark");
+    } else {
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => init());
+  document.addEventListener("astro:after-swap", () => init());
+  preloadTheme();
+</script><link rel="stylesheet" href="/_astro/_slug_.DA3J8DN5.css"><script type="module" src="/_astro/hoisted.BMnUj_RX.js"></script></head> <body> <header> <div class="mx-auto max-w-screen-sm px-3">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-orange-600 dark:decoration-white/50 hover:no-underline hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-orange-600 hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Chen Jing </div>  </a> <nav class="flex gap-1"> <a href="/blog" target="_self" class="inline-block decoration-orange-600 dark:decoration-white/50 hover:no-underline hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-orange-600 hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-4"> 
+文章
+ </a> <!-- <span>
+          {`/`}
+        </span>
+        <Link href="/work">
+          工作
+        </Link> --> <span> / </span> <a href="/projects" target="_self" class="inline-block decoration-orange-600 dark:decoration-white/50 hover:no-underline hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-orange-600 hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-4"> 
+项目
+ </a> </nav> </div>  </div> </header> <main>  <div class="mx-auto max-w-screen-sm px-3">  <div class="animate"> <a href="/blog" class="relative group w-fit flex pl-7 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm"> 
+所有文章
+ </div> </a> </div> <div class="space-y-1 my-10"> <div class="animate flex items-center gap-1.5"> <div class="font-base text-sm"> <time datetime="2022-11-05T16:00:00.000Z"> 2022/11/6 </time> </div> <!-- &bull; --> <!-- <div class="font-base text-sm">
+          {readingTime(post.body)}
+        </div> --> </div> <div class="animate text-2xl font-semibold text-black dark:text-white"> 如何计算所有者收益？以 Scott Fetzer 为例 </div> </div> <article class="animate"> <p>在 1986 年致股东信中，巴菲特通过收购的 Scott Fetzer 公司，展示了估算所有者收益（Owner Earnings）的方法，将所有者收益作为真正的现金流来估算内在价值。</p>
+<p><img src="/blogimages/owner-earnings.webp" alt="Owner Earnings"></p>
+<h2 id="一回到-1986-年">一、回到 1986 年</h2>
+<p>Scott Fetzer 当年期初账面价值：$172.6M（ M 表示 Million 百万美元，下同）</p>
+<p>巴菲特支付价格：$315.2M</p>
+<p>溢价：$315.2M - $172.6M = $142.6M</p>
+<p>买入后，按照 GAAP 会计准则，$142.6M 会被分配到资产负债表的四个项目中。</p>
+<p>（1）存货：$114.764M - $77.489M = $37.275M</p>
+<p>（2）固定资产：$148.960M - $80.967M = $67.993M</p>
+<p>（3）商誉：$34.210M - $9.836M = $24.374M</p>
+<p>（4）递延所得税：$17.025M - $4.075M = $12.95M</p>
+<p>买入后，按照 GAAP 会计准则，利润表也有四个项目会调整。</p>
+<p>这造成了买入后，Scott Fetzer 在伯克希尔的报表上净利润变成 $28.605M（买入前 $40.231M），少了 $11.626M。但买卖前后，Scott Fetzer 根本没有发生任何的变化。</p>
+<p><img src="/blogimages/ScottFetzer.webp" alt="Company Old and New"></p>
+<p>所以，如果只看买入后伯克希尔报表上 Scott Fetzer 的净利润，我们就会低估其真实的内在价值。</p>
+<h2 id="二估算所有者收益">二、估算所有者收益</h2>
+<p>当我们只看到，按照 GAAP 会计准则编制的财务报表（如 1986 年买入后）时，应该怎么去估算其真正归所有者所有的现金流，进而估算公司内在价值呢？</p>
+<p>巴菲特提供了一个答案：所有者收益。</p>
+<p>计算公式：</p>
+<p><img src="/blogimages/ownerEarningsCalulate.webp" alt="所有者收益计算公式"></p>
+<p>按上述公式，1986 年 Scott Fetzer 所有者收益 = k+b2+b3+f+j2-年均维护性资本开支 = $48.532 - 年均维护性资本性开支。</p>
+<p><img src="/blogimages/ownerEarningsCalculation.webp" alt="Scott Fetzer 所有者收益"></p>
+<h2 id="三年均资本化开支">三、年均资本化开支</h2>
+<p>资本性开支包含维护性资本开支（Maintenance Capital Expenditure）、增长性资本开支（Growth Capital Expenditure）。</p>
+<p>除非你真的非常非常懂这门生意，否则你想要知道这个数字，只能依赖企业管理者的内部财务数据。但是，绝大部分情况下，他们是不会告诉你的。那么，我们怎么来估算维护性资本开支？</p>
+<p>幸好，哥伦比亚大学商学院教授 Bruce Greenwald 在 <em>Value Investing: From Graham to Buffett and Beyond</em> 一书中，提供了一个方法。当然，这个不是万能的。但至少对我来说，是不错的工具。</p>
+<p>资本性开支通常在现金流量表上列出。假设其中一部分是为了维持达到上一年的销售水平，其余是为了实现销售额的增长。一般情况，销售额与固定资产（扣除折旧）会保持稳定的关系。计算方式：</p>
+<p>（1）r = 固定资产 / 销售额 ，再取过去5年平均值</p>
+<p>（2）增长性资本开支 （Growth capex）= r *（当年销售额 - 前年销售额）</p>
+<p>（3）维护性资本开支 （Maintenance capex） =  现金流量表上的资本性开支 - 增长性资本开支</p>
+<p>国内报表，现金流量表上的资本性支出近似等于：“投资活动现金流量”上的“购置固定资产、无形资产、生物资产所支付的现金” 减去“处置固定资产、无形资产、生物资产所收到的现金”。</p>
+<p>由于当年还没有现金流量表，以及 Scott Fetzer 的历史财务数据。所以，此处我就用 1986 年致股东信中，巴菲特的结论：维护性资本开支接近 $8.3M。</p>
+<h2 id="四估算内在价值">四、估算内在价值</h2>
+<p>以上，我们得到 1986 年所有者收益 = $48.532M - $8.3M = $40.232M。</p>
+<p>最后，我使用马喆在《估值的标尺》里，提到的简单易记计算方式：内在价值 = 未来 10 年净利润的总和。</p>
+<p>考虑安全边际，打个 6 折，内在价值最低区间（按 0%-5% 增长率）在 $240M~$316M。上限值与巴菲特支付的 $315.2M 相近。</p>
+<p><img src="/blogimages/mazhe.webp" alt="内在价值估算"></p> </article>  </div>  </main> <footer class="animate"> <div class="mx-auto max-w-screen-sm px-3">  <div class="relative"> <div class="absolute right-0 -top-20"> <button id="back-to-top" class="relative group w-fit flex pl-8 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current rotate-90"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm">
+返回顶部
+</div> </button> </div> </div> <div class="flex justify-between items-center"> <div>
+&copy; 2024 | Chen Jing </div> <div class="flex flex-wrap gap-1 items-center"> <a href="/rss.xml" aria-label="RSS Feed" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <path d="M4 11a9 9 0 0 1 9 9"></path> <path d="M4 4a16 16 0 0 1 16 16"></path> <circle cx="5" cy="19" r="1"></circle> </svg> </a> <button id="light-theme-button" aria-label="Light theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> </button> <button id="dark-theme-button" aria-label="Dark theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> <!-- <button
+          id="system-theme-button"
+          aria-label="System theme"
+          class="group size-8 flex items-center justify-center rounded-full"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"
+          >
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </button> --> </div> </div>  </div> </footer> </body></html>
